@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TestTask_MVP_DreamDriven.DataAccess;
+using TestTask_MVP_DreamDriven.DataAccess.Data.Repository;
+using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 //added
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false)

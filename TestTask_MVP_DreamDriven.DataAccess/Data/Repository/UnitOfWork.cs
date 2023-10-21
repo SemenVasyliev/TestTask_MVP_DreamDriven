@@ -8,7 +8,7 @@ using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
 
 namespace TestTask_MVP_DreamDriven.DataAccess.Data.Repository
 {
-    internal class UnitOfWork : iUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _db;
 
