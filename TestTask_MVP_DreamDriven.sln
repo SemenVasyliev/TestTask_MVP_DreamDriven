@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTask_MVP_DreamDriven", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTask_MVP_DreamDriven.DataAccess", "TestTask_MVP_DreamDriven.DataAccess\TestTask_MVP_DreamDriven.DataAccess.csproj", "{DBDE764E-FFEC-432B-9F28-1A65A1407D2E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTask_MVP_DreamDriven.Models", "TestTask_MVP_DreamDriven.Models\TestTask_MVP_DreamDriven.Models.csproj", "{305136CA-0207-489D-980C-B2ABEB017BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTask_MVP_DreamDriven.Models", "TestTask_MVP_DreamDriven.Models\TestTask_MVP_DreamDriven.Models.csproj", "{305136CA-0207-489D-980C-B2ABEB017BAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTask_MVP_DreamDriven.Utility", "TestTask_MVP_DreamDriven.Utility\TestTask_MVP_DreamDriven.Utility.csproj", "{53B8AF71-707F-4D4D-AE90-7A215170B22F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestTask_MVP_DreamDriven.Utility", "TestTask_MVP_DreamDriven.Utility\TestTask_MVP_DreamDriven.Utility.csproj", "{53B8AF71-707F-4D4D-AE90-7A215170B22F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
