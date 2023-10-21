@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using TestTask_MVP_DreamDriven.Data;
+using TestTask_MVP_DreamDriven.DataAccess;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,11 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+//added
+builder.Services.AddMvc(options => options.EnableEndpointRouting = false)
+    .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
+builder.Services.AddControllersWithViews();
+//
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,11 +36,12 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseRouting();
+//app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapRazorPages();
+//app.MapRazorPages();
+app.UseMvc();
 
 app.Run();

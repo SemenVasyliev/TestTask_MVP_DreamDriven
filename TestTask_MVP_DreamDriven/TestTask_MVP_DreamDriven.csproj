@@ -13,6 +13,18 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.22" />
+    <PackageReference Include="Stripe.net" Version="43.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestTask_MVP_DreamDriven.DataAccess\TestTask_MVP_DreamDriven.DataAccess.csproj" />
+    <ProjectReference Include="..\TestTask_MVP_DreamDriven.Models\TestTask_MVP_DreamDriven.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\Admin\" />
+    <Folder Include="Pages\Customer\Home\" />
+    <Folder Include="Pages\Customer\Cart\" />
   </ItemGroup>
 
 </Project>

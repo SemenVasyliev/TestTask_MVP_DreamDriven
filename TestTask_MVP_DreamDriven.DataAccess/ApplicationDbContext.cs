@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace TestTask_MVP_DreamDriven.Data
+namespace TestTask_MVP_DreamDriven.DataAccess
 {
     public class ApplicationDbContext : IdentityDbContext
     {
