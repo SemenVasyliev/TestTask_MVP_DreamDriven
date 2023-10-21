@@ -15,7 +15,12 @@ namespace TestTask_MVP_DreamDriven.DataAccess.Data.Repository
 
         public void Save()
         {
-            throw new NotImplementedException();
+            _db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            _db.Dispose();
         }
 
         public UnitOfWork(ApplicationDbContext db)
