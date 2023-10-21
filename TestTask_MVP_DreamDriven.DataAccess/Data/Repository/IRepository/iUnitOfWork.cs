@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository
 {
-    internal interface iUnitOfWork 
+    public interface iUnitOfWork 
     {
+        ICategoryRepository Category { get; }
+        void Save();
     }
 }
