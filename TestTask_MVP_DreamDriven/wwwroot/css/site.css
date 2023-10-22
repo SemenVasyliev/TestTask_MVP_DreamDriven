@@ -223,3 +223,12 @@ body {
     width: 210px !important;
     margin: 0 auto;
 }
+.toast-success {
+    background-color: #28a745; 
+    color: #fff; 
+}
+
+.toast-error {
+    background-color: #dc3545; 
+    color: #fff; 
+}
