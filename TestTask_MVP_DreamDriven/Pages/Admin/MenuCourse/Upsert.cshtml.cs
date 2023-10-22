@@ -1,29 +1,37 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
+using TestTask_MVP_DreamDriven.Models.ViewModels;
 
 namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
 {
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public UpsertModel(IUnitOfWork unitOfWork)
+        public UpsertModel(IUnitOfWork unitOfWork, IWebHostEnvironment hostingEnvironment)
         {
                 _unitOfWork = unitOfWork;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [BindProperty]
-        public Models.Category CategoryObj { get; set; }
+        public MenuCourseVM MenuCourseObj { get; set; }
 
         public IActionResult OnGet(int? id)
         {
-
-            CategoryObj = new Models.Category();
+            MenuCourseObj = new MenuCourseVM
+            {
+                CategoryList = _unitOfWork.Category.GetCategoryListForDropDown(),
+                ComplexityList = _unitOfWork.Complexity.GetComplexityListForDropDown(),
+                MenuCourse = new Models.MenuCourse()
+            };
+            
             if (id != null)
             {
-                CategoryObj = _unitOfWork.Category.GetFirstOfDefault(u => u.Id == id);
-                if (CategoryObj == null)
+                MenuCourseObj.MenuCourse = _unitOfWork.MenuCourse.GetFirstOfDefault(u => u.Id == id);
+                if (MenuCourseObj.MenuCourse == null)
                 {
                     return NotFound();
                 }
@@ -33,19 +41,64 @@ namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
         }
 
 
-        public IActionResult OnPost(Models.Category CategoryObj) 
+        public IActionResult OnPost() 
         {
+            string webRootPath = _hostingEnvironment.WebRootPath;
+            var files = HttpContext.Request.Form.Files;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            if (CategoryObj.Id == 0)
+            if (MenuCourseObj.MenuCourse.Id == 0)
             {
-                _unitOfWork.Category.Add(CategoryObj);
+                string fileName = Guid.NewGuid().ToString();
+                var uploads = Path.Combine(webRootPath, @"images\menuCourse");
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var fileStream = new FileStream(Path.Combine(uploads,fileName+extension), FileMode.Create))
+                {
+                    files[0].CopyTo(fileStream);
+                }
+                MenuCourseObj.MenuCourse.Image = @"\image\menuCourse\" + fileName + extension;
+
+                _unitOfWork.MenuCourse.Add(MenuCourseObj.MenuCourse);
             }
             else
             {
-                _unitOfWork.Category.Update(CategoryObj);
+                // Edit Menu Course
+                var objFromDb = _unitOfWork.MenuCourse.Get(MenuCourseObj.MenuCourse.Id);
+
+                if (files.Count > 0) 
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(webRootPath, @"images\menuCourse");
+                    var extension = Path.GetExtension(files[0].FileName);
+
+
+                    var imagePath = Path.Combine(webRootPath, objFromDb.Image.TrimStart('\\'));
+
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+
+
+
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        files[0].CopyTo(fileStream);
+                    }
+                    MenuCourseObj.MenuCourse.Image = @"\image\menuCourse\" + fileName + extension;
+
+                    _unitOfWork.MenuCourse.Add(MenuCourseObj.MenuCourse);
+                }
+                else
+                {
+                    MenuCourseObj.MenuCourse.Image = objFromDb.Image;
+                }
+
+                _unitOfWork.MenuCourse.Update(MenuCourseObj.MenuCourse);
             }
             _unitOfWork.Save();
             return RedirectToPage("./Index");
