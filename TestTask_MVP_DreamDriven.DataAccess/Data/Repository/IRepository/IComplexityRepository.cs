@@ -8,10 +8,10 @@ using TestTask_MVP_DreamDriven.Models;
 
 namespace TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IComplexityRepository : IRepository<Complexity>
     {
-        IEnumerable<SelectListItem> GetCategoryListForDropDown();
+        IEnumerable<SelectListItem> GetComplexityListForDropDown();
 
-        void Update(Category category);
+        void Update(Complexity complexity);
     }
 }

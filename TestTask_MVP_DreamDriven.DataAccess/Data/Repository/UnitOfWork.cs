@@ -27,8 +27,12 @@ namespace TestTask_MVP_DreamDriven.DataAccess.Data.Repository
         {
             _db = db;
             Category = new CategoryRepository (_db);
-            }
+            Complexity = new ComplexityRepository (_db);
+            MenuCourse = new MenuCourseRepository(_db);
+        }
 
-        public ICategoryRepository Category { get; set; }
+        public ICategoryRepository Category { get; private set; }
+        public IComplexityRepository Complexity { get; private set; }
+        public IMenuCourseRepository MenuCourse { get; private set; }
     }
 }
