@@ -1,7 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.NetworkInformation;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
+using TestTask_MVP_DreamDriven.Models;
 using TestTask_MVP_DreamDriven.Models.ViewModels;
+using TestTask_MVP_DreamDriven.Utility;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
 {
@@ -16,8 +29,11 @@ namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
             _hostingEnvironment = hostingEnvironment;
         }
 
+
+
         [BindProperty]
         public MenuCourseVM MenuCourseObj { get; set; }
+
 
         public IActionResult OnGet(int? id)
         {
@@ -60,7 +76,7 @@ namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
                 {
                     files[0].CopyTo(fileStream);
                 }
-                MenuCourseObj.MenuCourse.Image = @"\image\menuCourse\" + fileName + extension;
+                MenuCourseObj.MenuCourse.Image = @"\images\menuCourse\" + fileName + extension;
 
                 _unitOfWork.MenuCourse.Add(MenuCourseObj.MenuCourse);
             }
@@ -89,9 +105,8 @@ namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
                     {
                         files[0].CopyTo(fileStream);
                     }
-                    MenuCourseObj.MenuCourse.Image = @"\image\menuCourse\" + fileName + extension;
+                    MenuCourseObj.MenuCourse.Image = @"\images\menuCourse\" + fileName + extension;
 
-                    _unitOfWork.MenuCourse.Add(MenuCourseObj.MenuCourse);
                 }
                 else
                 {

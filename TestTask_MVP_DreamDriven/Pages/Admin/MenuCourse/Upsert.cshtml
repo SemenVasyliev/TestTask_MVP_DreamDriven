@@ -55,10 +55,11 @@
                         <label asp-for="MenuCourseObj.MenuCourse.CategoryId"></label>
                     </div>
                     <div class="col-9">
-                        @Html.DropDownListFor(m => m.MenuCourseObj.MenuCourse.CategoryId,
-                        new SelectList(Model.MenuCourseObj.CategoryList, "Value", "Text"),
+ 
+                        @* @Html.DropDownListFor(m => m.MenuCourseObj.MenuCourse.CategoryId,
+                        Model.MenuCourseObj.CategoryList,
                         "- Please select a Category -",
-                        new { @class = "form-control" })
+                        new { @class = "form-control" }) *@
                         <span class="text-danger" asp-validation-for="MenuCourseObj.MenuCourse.CategoryId"></span>
                     </div>
                 </div>
@@ -67,10 +68,10 @@
                         <label asp-for="MenuCourseObj.MenuCourse.ComplexityId"></label>
                     </div>
                     <div class="col-9">
-                        @Html.DropDownListFor(m => m.MenuCourseObj.MenuCourse.ComplexityId,
-                        new SelectList(Model.MenuCourseObj.ComplexityList, "Value", "Text"),
-                        "- Please select a Food Type -",
-                        new { @class = "form-control" })
+                       @*  @Html.DropDownListFor(m => m.MenuCourseObj.MenuCourse.ComplexityId,
+                        Model.MenuCourseObj.ComplexityList,
+                        "- Please select a Complexity of Course -",
+                        new { @class = "form-control" }) *@
                         <span class="text-danger" asp-validation-for="MenuCourseObj.MenuCourse.ComplexityId"></span>
                     </div>
                 </div>
