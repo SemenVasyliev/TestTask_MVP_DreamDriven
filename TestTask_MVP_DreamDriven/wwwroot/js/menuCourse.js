@@ -34,7 +34,6 @@ function loadList() {
             "emptyTable": "no data found."
         },
         "width": "100%"
-        "order": [[2, "asc"]]
     });
 }
 function Delete(url) {
