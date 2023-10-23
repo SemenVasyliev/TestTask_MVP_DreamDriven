@@ -4,6 +4,7 @@ using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
 
 namespace TestTask_MVP_DreamDriven.Pages.Admin.Complexity
 {
+
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;

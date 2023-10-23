@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
+using TestTask_MVP_DreamDriven.Utility;
 
 namespace TestTask_MVP_DreamDriven.Pages.Admin.Category
 {
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace TestTask_MVP_DreamDriven.Pages.Admin.MenuCourse
 {
+    [Authorize(Roles = SD.ManagerRole)]
     public class UpsertModel : PageModel
     {
         private readonly IUnitOfWork _unitOfWork;

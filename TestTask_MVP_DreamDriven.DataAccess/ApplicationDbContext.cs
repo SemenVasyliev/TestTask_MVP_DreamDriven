@@ -16,5 +16,6 @@ namespace TestTask_MVP_DreamDriven.DataAccess
         public DbSet<Complexity> Complexity { get; set; }
 
         public DbSet<MenuCourse> MenuCourse { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
     }
 }

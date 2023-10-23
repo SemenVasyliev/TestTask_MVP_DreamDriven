@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
+using System;
 using TestTask_MVP_DreamDriven.DataAccess;
 using TestTask_MVP_DreamDriven.DataAccess.Data.Repository;
 using TestTask_MVP_DreamDriven.DataAccess.Data.Repository.IRepository;
+using TestTask_MVP_DreamDriven.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +16,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+   .AddDefaultTokenProviders()
+   .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+
+/*builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();*/
+
 builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -23,6 +35,7 @@ builder.Services.AddMvc(options => options.EnableEndpointRouting = false)
     .SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Latest);
 builder.Services.AddControllersWithViews();
 //
+
 var app = builder.Build();
 
 
